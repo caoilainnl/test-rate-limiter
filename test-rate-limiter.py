@@ -6,23 +6,31 @@ import ccxt.async_support as ccxt
 
 
 async def fetch_tickers_parallel(times, symbol):
-    exchange = ccxt.bitget({
+    exchange = ccxt.binance({
         'enableRateLimit': True,
+        # 'rateLimiterAlgorithm': 'leakyBucket',
         'rateLimiterAlgorithm': 'rollingWindow',
-        'maxLimiterRequests': 4000,
+        'maxLimiterRequests': 5000,
     })
-    start_time = time.time()
-    tasks = []
-    for i in range(times):
-        tasks.append(fetch_ticker(exchange, symbol, i, start_time))
-    await asyncio.gather(*tasks)
+    try:
+        start_time = time.time()
+        tasks = []
+        for i in range(times):
+            tasks.append(fetch_ticker(exchange, symbol, i, start_time))
+        await asyncio.gather(*tasks)
+    finally:
+        await exchange.close()
 
 
 async def fetch_ticker(exchange, symbol, index, start_time):
-    result = await exchange.fetch_ticker(symbol)
-    elapsed = (time.time() - start_time) * 1000
-    print(f"Call {index + 1} completed in {elapsed:.2f} ms")
-    return result
+    try:
+        result = await exchange.fetch_ticker(symbol)
+        elapsed = (time.time() - start_time) * 1000
+        print(f"Call {index + 1} completed in {elapsed:.2f} ms")
+        return result
+    except Exception as e:
+        print(f"Call {index + 1} failed: {e}")
 
 
-asyncio.run(fetch_tickers_parallel(60, 'BTC/USDT'))
+num_requests = 5000
+asyncio.run(fetch_tickers_parallel(num_requests, 'BTC/USDT'))

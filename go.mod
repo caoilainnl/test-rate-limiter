@@ -2,11 +2,12 @@ module test-rate-limiter
 
 go 1.24.3
 
-replace github.com/ccxt/ccxt/go/v4 => ../go/v4
+replace github.com/ccxt/ccxt/go/v4 => ../ccxt/go/v4
+
+require github.com/ccxt/ccxt/go/v4 v4.4.86
 
 require (
 	github.com/bits-and-blooms/bitset v1.13.0 // indirect
-	github.com/ccxt/ccxt/go/v4 v4.4.86 // indirect
 	github.com/consensys/bavard v0.1.13 // indirect
 	github.com/consensys/gnark-crypto v0.12.1 // indirect
 	github.com/crate-crypto/go-ipa v0.0.0-20240223125850-b1e8a79f509c // indirect

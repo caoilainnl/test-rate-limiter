@@ -1,0 +1,29 @@
+{
+    "name": "caoilainn/test-rate-limiter",
+    "autoload": {
+        "psr-4": {
+            "Caoilainn\\TestRateLimiter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "caoilainnl",
+            "email": "caoilainn.lynch@proton.me"
+        }
+    ],
+    "require": {
+        "react/event-loop": "^1.5",
+        "react/promise": "^3.2",
+        "ccxt/ccxt": "dev-rolling-window-rate-limiter"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../ccxt",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "minimum-stability": "dev"
+}

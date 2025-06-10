@@ -1,2 +1,8 @@
 TestThrottler/bin
 TestThrottler/obj
+.env
+.DS_Store
+node_modules
+/vendor/
+.vscode
+composer.lock
