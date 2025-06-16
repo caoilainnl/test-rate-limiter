@@ -10,7 +10,7 @@ async def fetch_tickers_parallel(times, symbol):
         'enableRateLimit': True,
         # 'rateLimiterAlgorithm': 'leakyBucket',
         'rateLimiterAlgorithm': 'rollingWindow',
-        'maxLimiterRequests': 5000,
+        'maxLimiterRequests': 1000,
     })
     try:
         start_time = time.time()

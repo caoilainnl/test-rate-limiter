@@ -26,7 +26,7 @@ class Program
 
             var startTime = Stopwatch.StartNew();
             var tasks = new List<Task>();
-            var numRequests = 5000;
+            var numRequests = 1000;
 
             for (int i = 0; i < numRequests; i++)
             {

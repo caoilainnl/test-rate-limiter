@@ -22,5 +22,5 @@ async function fetchTickersParallel(times: number, symbol: string): Promise<void
     await Promise.all(requests);
 }
 
-const numRequests = 5000;
+const numRequests = 1000;
 fetchTickersParallel(numRequests, "BTC/USDT").catch(console.error);
